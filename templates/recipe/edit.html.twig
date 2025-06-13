@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}#{{recipe.id ~" "~ recipe.slug}}{% endblock %}
+
+{% block body %}
+{# theme vertical dans twig.yaml #}
+    {# {{form_start(monForm)}}
+        <div class ="d-flex">
+            {{form_row(monForm.title)}}
+            {{form_row(monForm.duration)}}
+        </div>
+    {{ form_end(monForm)}} #}
+
+{# theme horizontal dans twig.yaml #}
+       <div class = "row">
+        <div class= "col-md-6 mx-auto">
+            <h1 align="center">Modifié une recette</h1>          
+            {{form(monForm)}}
+        </div>
+    </div>
+    
+{% endblock %}
