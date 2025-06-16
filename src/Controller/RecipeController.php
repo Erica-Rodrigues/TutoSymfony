@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -98,10 +99,10 @@ final class RecipeController extends AbstractController
         return $this->render('recipe/show.html.twig',[
             // 'slug' => $slug,
             // 'id' => $id,
-            'user' => [
-                'firstname' => 'Erica',
-                'lastname' => 'Rodrigues'
-            ],
+            // 'user' => [
+            //     'firstname' => 'Erica',
+            //     'lastname' => 'Rodrigues'
+            // ],
             'recipe' => $recipe
         ]);
 
