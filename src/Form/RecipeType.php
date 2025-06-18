@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,16 +22,24 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class,[
-                'label'=>'Titre',
+                'label'=>'recipeForm.title',
                 // 'constraints' => new Length(min: 10, minMessage:"Valeur trop petite, 10 minimum")
-            ])
+            ]
+            )
             ->add('slug', HiddenType::class)
-            ->add('content',TextareaType::class)
-            ->add('imageName')
-            ->add('duration')
-            ->add('save', SubmitType::class,[
-                'label' => 'Envoyer'
+            ->add('content',TextareaType::class,[
+                'label'=>'recipeForm.content',
             ])
+            ->add('imageName',TextType::class,[
+                'label'=>'recipeForm.imageName'
+            ])
+            ->add('duration',NumberType::class,[
+                'label'=>"recipeForm.duration"
+            ])
+            ->add('save', SubmitType::class,[
+                'label' => 'recipeForm.save'
+            ]
+            )
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->autoSlug(...))
         ;
     }
