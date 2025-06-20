@@ -1,21 +1,21 @@
-# Title : "Titre"
-# Content : "Contenu"
-# Image name : "Image"
-# Duration : "Durée"
-# Save : "Enregistrer"
+recipeForm.title: Titre
+recipeForm.content: Description
+recipeForm.imageName: "Lien de l'image"
+recipeForm.duration: Durée
+recipeForm.save: Sauvegarder
+navBar.home: Accueil
+navBar.recipes: 'Liste des Recettes'
+navBar.addRecipe: 'Ajouter une Recette'
+navBar.account: 'Mon compte'
+navBar.logout: 'Se Déconnecter'
+navBar.login: 'Se Connecter'
+navBar.signUp: "S'enregistrer"
+registerForm :
+  firstname: Prénom
+  lastname: Nom
+  email: Email
+  password: 'Mot de passe'
+  agreeTerms: 'Accepter termes et conditions'
 
-recipeForm:
-  title : "Titre"
-  content : "Description"
-  imageName : "Lien de l'image"
-  duration : "Durée"
-  save : "Sauvegarder"
-
-navBar:
-  home : "Accueil"
-  recipes : "Liste des Recettes"
-  addRecipe : "Ajouter une Recette"
-  account : "Mon compte"
-  logout : "Se Déconnecter"
-  login : "Se Connecter"
-  signUp : "S'enregistrer"
+registerTemplate.button: "S'enregistrer"
+registerTemplate.title: Inscription
