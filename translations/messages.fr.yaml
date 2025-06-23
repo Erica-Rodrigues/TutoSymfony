@@ -10,12 +10,10 @@ navBar.account: 'Mon compte'
 navBar.logout: 'Se Déconnecter'
 navBar.login: 'Se Connecter'
 navBar.signUp: "S'enregistrer"
-registerForm :
-  firstname: Prénom
-  lastname: Nom
-  email: Email
-  password: 'Mot de passe'
-  agreeTerms: 'Accepter termes et conditions'
-
+registerForm.firstname: Prénom
+registerForm.lastname: Nom
+registerForm.email: Email
+registerForm.password: 'Mot de passe'
+registerForm.agreeTerms: 'Accepter termes et conditions'
 registerTemplate.button: "S'enregistrer"
 registerTemplate.title: Inscription
