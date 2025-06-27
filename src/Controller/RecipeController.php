@@ -20,6 +20,15 @@ final class RecipeController extends AbstractController
     #[Route('/recette', name: 'app_recipe_index')]
     public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
     {
+        if($this->getUser()){
+            /**
+             * @var User 
+             */
+            $user = $this->getUser();
+            if(!$user->isVerified()){
+                $this->addFlash('info','Your email address is not verified.');
+            }
+        }
         $recipes = $repository->findAll();
         // $recipes = $repository->findRecipeDurationLowerThan(60);
         // dd($recipes);
@@ -121,6 +130,23 @@ final class RecipeController extends AbstractController
 
     #[Route(path : '/recette/{id}/edit', name : 'app_recipe_edit')]
     public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response{
+        if($this->getUser()){
+            /**
+             * @var User 
+             */
+            $user = $this->getUser();
+            if(!$user->isVerified()){
+                $this->addFlash('error','You must confirm your email to edit a Recipe !');
+                return $this->redirectToRoute('app_recipe_index');
+            }
+            if($user->getEmail() != $recipe->getUser()->getEmail()){
+                $this->addFlash('error', 'You must be the user '. $recipe->getUser()->getEmail() .' to edit this Recipe');
+                return $this->redirectToRoute('app_recipe_index');
+            }
+        }else{
+            $this->addFlash('error', 'You must login to edit a Recipe !');
+            return $this->redirectToRoute('app_login');
+        }
         //cette methode prend en premier paramètre le formulaire que l'on souhaite utiliser
         //en second paramètre elle prend les donées
         $form = $this->createForm(RecipeType::class, $recipe);
@@ -140,6 +166,19 @@ final class RecipeController extends AbstractController
 
     #[Route(path:'/recette/create', name : 'app_recipe_create')]
     public function create(Request $request, EntityManagerInterface $em) : Response{
+        if($this->getUser()){
+            /**
+             * @var User 
+             */
+            $user = $this->getUser();
+            if(!$user->isVerified()){
+                $this->addFlash('error','You must confirm your email to create a Recipe !');
+                return $this->redirectToRoute('app_recipe_index');
+            }
+        }else{
+            $this->addFlash('error', 'You must login to create a Recipe !');
+            return $this->redirectToRoute('app_login');
+        }
         $recipe = new Recipe;
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -159,6 +198,23 @@ final class RecipeController extends AbstractController
 
     #[Route(path:'/recette/{id}/delete', name : 'app_recipe_delete')]
     public function delete(Recipe $recipe, EntityManagerInterface $em) : Response{
+        if($this->getUser()){
+            /**
+             * @var User 
+             */
+            $user = $this->getUser();
+            if(!$user->isVerified()){
+                $this->addFlash('error','You must confirm your email to delete a Recipe !');
+                return $this->redirectToRoute('app_recipe_index');
+            }
+            if($user->getEmail() != $recipe->getUser()->getEmail()){
+                $this->addFlash('error', 'You must be the user '. $recipe->getUser()->getEmail() .' to delete this Recipe');
+                return $this->redirectToRoute('app_recipe_index');
+            }
+        }else{
+            $this->addFlash('error', 'You must login to delete a Recipe !');
+            return $this->redirectToRoute('app_login');
+        }
         $titre = $recipe->getTitle();
         $em->remove($recipe);
         $em->flush();
