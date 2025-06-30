@@ -17,3 +17,19 @@ registerForm.password: 'Mot de passe'
 registerForm.agreeTerms: 'Accepter termes et conditions'
 registerTemplate.button: "S'enregistrer"
 registerTemplate.title: Inscription
+recipeController.indexEmailNotVerified: "Votre adresse email n'est pas vérifiée"
+recipeController.edit.confirmEmail: "Vous devez vérifier votre adresse email pour pouvoir modifier une recette"
+recipeController.edit.userRecipe : "Vous devez être"
+recipeController.edit.userRecipe2 : "pour éditer cette recette"
+recipeController.edit.mustLogin : "Vous devez être connecter pour pouvoir modifier une recette"
+recipeController.edit.success : 'La recette a bien été modifiée'
+recipeController.create.confirmEmail : 'Vous devez vérifiée votre adresse email pour créer une recette!'
+recipeController.create.mustLogin : "Vous devez vous identifier pour créer une recette"
+recipeController.success.createRecipe1 : 'La recette'
+recipeController.success.createRecipe2 : 'a bien été créée'
+recipeController.delete.confirmEmail : "Vous devez vérifier votre adresse email pour pouvoir supprimer une recette"
+recipeController.delete.userRecipe1 : "Vous devez être"
+recipeController.delete.userRecipe2 : "pour supprimer cette recette"
+recipeController.delete.mustLogin : "Vous devez vous identifier pour supprimer une recette"
+recipeController.success.deleteRecipe1 : 'La recette'
+recipeController.success.deleteRecipe2 : ' a bien été supprimée'
