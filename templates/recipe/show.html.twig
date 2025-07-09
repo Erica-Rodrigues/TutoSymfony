@@ -7,7 +7,8 @@
         <article>
             <h1> {{ recipe.title |title }}</h1>
             <br>
-            <img style="max-width: 500px;" class="bd-placeholder-img" src={{recipe.imageName}}>
+            {# <img style="max-width: 500px;" class="bd-placeholder-img" src={{recipe.imageName}}> #}
+                        <img style="max-width: 500px;" src={{vich_uploader_asset(recipe, 'imageFile')}}>
             <p>Recette créée par {{ recipe.user.firstname }} {{ recipe.user.lastname }}</p>
             <br>
             <h5>{{ recipe.content | nl2br }}</h5>

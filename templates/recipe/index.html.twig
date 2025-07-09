@@ -12,13 +12,17 @@
             {% for recipe in recipes %}
                 <div class="card max-w-sm col-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 my-8 mr-4 overflow-hidden" data-type="post" align="center">
                     <h2><a href={{ path('app_recipe_show', {id : recipe.id, slug : recipe.slug})}}>{{ recipe.title |u.truncate(20,'...',true)}} </a></h2>
-                    <img src = {{recipe.imageName}} width="200" height="250" align="center">
+                    {# <img src = {{recipe.imageName}} width="200" height="250" align="center"> #}
+                    <img src={{vich_uploader_asset(recipe, 'imageFile')}} width="200" height="250" align="center">
                     <small>Submitted {{ recipe.createdAt |ago }}</small> 
                     <small>By {{recipe.user.firstname}} {{recipe.user.lastname}}</small>
                 </div>        
             {% else %}
                 <p>Pas encore de recette</p>
             {% endfor %}
+        </div>
+        <div class="navigation  mb-8" style=" text-align: center; display: inline-block">
+            {{ knp_pagination_render(recipes) }}
         </div>
     </div>
 {% endblock %}

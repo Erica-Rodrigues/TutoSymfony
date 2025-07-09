@@ -1,3 +1,5 @@
+vich_uploader.form_label.delete_confirm: 'Supprimer?'
+vich_uploader.link.download: Télécharger
 recipeForm.title: Titre
 recipeForm.content: Description
 recipeForm.imageName: "Lien de l'image"
@@ -18,18 +20,35 @@ registerForm.agreeTerms: 'Accepter termes et conditions'
 registerTemplate.button: "S'enregistrer"
 registerTemplate.title: Inscription
 recipeController.indexEmailNotVerified: "Votre adresse email n'est pas vérifiée"
-recipeController.edit.confirmEmail: "Vous devez vérifier votre adresse email pour pouvoir modifier une recette"
-recipeController.edit.userRecipe : "Vous devez être"
-recipeController.edit.userRecipe2 : "pour éditer cette recette"
-recipeController.edit.mustLogin : "Vous devez être connecter pour pouvoir modifier une recette"
-recipeController.edit.success : 'La recette a bien été modifiée'
-recipeController.create.confirmEmail : 'Vous devez vérifiée votre adresse email pour créer une recette!'
-recipeController.create.mustLogin : "Vous devez vous identifier pour créer une recette"
-recipeController.success.createRecipe1 : 'La recette'
-recipeController.success.createRecipe2 : 'a bien été créée'
-recipeController.delete.confirmEmail : "Vous devez vérifier votre adresse email pour pouvoir supprimer une recette"
-recipeController.delete.userRecipe1 : "Vous devez être"
-recipeController.delete.userRecipe2 : "pour supprimer cette recette"
-recipeController.delete.mustLogin : "Vous devez vous identifier pour supprimer une recette"
-recipeController.success.deleteRecipe1 : 'La recette'
-recipeController.success.deleteRecipe2 : ' a bien été supprimée'
+recipeController.edit.confirmEmail: 'Vous devez vérifier votre adresse email pour pouvoir modifier une recette'
+recipeController.edit.userRecipe1: 'Vous devez être'
+recipeController.edit.userRecipe2: 'pour éditer cette recette'
+recipeController.edit.mustLogin: 'Vous devez être connecter pour pouvoir modifier une recette'
+recipeController.edit.success: 'La recette a bien été modifiée'
+recipeController.create.confirmEmail: 'Vous devez vérifiée votre adresse email pour créer une recette!'
+recipeController.create.mustLogin: 'Vous devez vous identifier pour créer une recette'
+recipeController.success.createRecipe1: 'La recette'
+recipeController.success.createRecipe2: 'a bien été créée'
+recipeController.delete.confirmEmail: 'Vous devez vérifier votre adresse email pour pouvoir supprimer une recette'
+recipeController.delete.userRecipe1: 'Vous devez être'
+recipeController.delete.userRecipe2: 'pour supprimer cette recette'
+recipeController.delete.mustLogin: 'Vous devez vous identifier pour supprimer une recette'
+recipeController.success.deleteRecipe1: 'La recette'
+recipeController.success.deleteRecipe2: ' a bien été supprimée'
+'You are logged in as': 'Vous êtes connecté en tant que'
+'Please sign in': 'Veuillez-vous connecter'
+'Forgot Password ?': 'Mot de passe oublié?'
+'Not registered yet ?': 'Pas encore de compte'
+'Create an account': 'Créer un compte'
+accountShow.profil: 'Mon profil'
+accountShow.Accountcreatedon: 'Date de création du compte'
+accountShow.EditAccount: 'Modifier le compte'
+'Account successfuly updated !': 'Compte bien modifié !'
+'Update Profile': 'Mise à jour du profil'
+'Apply changes': 'Appliquer les changements'
+userForm.firstname: Prénom
+userForm.lastname: Nom
+accountController.show.mustLogin: 'Connectez-vous pour accéder à votre profil'
+accountController.edit.mustLogin: 'Connectez-vous pour modifier votre profil'
+Image file : 'fichier image'
+Delete profile image : 'Supprimer image de profil'
