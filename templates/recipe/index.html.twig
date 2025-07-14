@@ -3,11 +3,14 @@
 {# {% block title %}Liste des recettes{% endblock %} #}
 {% block title 'Liste des recettes' %}
 
-{% set nbRecipe = recipes|length %}
+{% set nbRecipe = recipeTotal %}
 
 {% block body %}
     <h1 align="center">Bienvenu dans la liste des Recettes ({{nbRecipe}})</h1>
     <div class = "container text-center">
+        {% include "layouts/partials/_search_data.html.twig" with {
+            form: form
+        } only %}
         <div class = "row">
             {% for recipe in recipes %}
                 <div class="card max-w-sm col-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 my-8 mr-4 overflow-hidden" data-type="post" align="center">
@@ -21,7 +24,8 @@
                 <p>Pas encore de recette</p>
             {% endfor %}
         </div>
-        <div class="navigation  mb-8" style=" text-align: center; display: inline-block">
+        <br>
+        <div class="navigation d-flex justify-content-center mb-4" >
             {{ knp_pagination_render(recipes) }}
         </div>
     </div>

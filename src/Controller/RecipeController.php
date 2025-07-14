@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use App\Form\SearchType;
+use App\Model\SearchData;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
@@ -32,11 +34,29 @@ final class RecipeController extends AbstractController
             }
         }
         $data = $repository->findAll();
+        $recipeTotal = sizeof($data);
         $recipes = $paginatorInterface->paginate(
             $data,
             $request->query->getInt('page', 1),
             6
         );
+
+        $searchData = new SearchData();
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $searchData->page = $request->query->getInt('page', 1);
+            $recipes = $repository->findBySearch($searchData);
+            $recipeTotal = sizeof($recipes);
+
+            return $this->render('recipe/index.html.twig', [
+                'form' => $form->createView(),
+                'recipes' => $recipes,
+                'recipeTotal' => $recipeTotal,
+            ]);
+
+        }
+
         // $recipes = $repository->findRecipeDurationLowerThan(60);
         // dd($recipes);
         // return new Response("Bienvenue sur la page des recettes !!!");
@@ -92,7 +112,9 @@ final class RecipeController extends AbstractController
         //$recipes = $em->getRepository(Recipe::class)->findAll();
 
         return $this->render('recipe/index.html.twig',[
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'form' => $form->createView(),
+            'recipeTotal' => $recipeTotal,
         ]);
     }
 
