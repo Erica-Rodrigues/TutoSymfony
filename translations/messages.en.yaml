@@ -1,0 +1,47 @@
+vich_uploader.form_label.delete_confirm: 'Delete?'
+vich_uploader.link.download: Download
+recipeForm.title: Title
+recipeForm.content: Description
+recipeForm.imageName: "Link of'image"
+recipeForm.duration: Duration in minutes
+recipeForm.save: Save
+navBar.home: Home
+navBar.recipes: 'Recipes'
+navBar.addRecipe: 'Create a Recipe'
+navBar.account: 'My Account'
+navBar.logout: 'Logout'
+navBar.login: 'Log In'
+navBar.signUp: "Sign Up"
+registerForm.firstname: First Name
+registerForm.lastname: Last Name
+registerForm.email: Email
+registerForm.password: 'Password'
+registerForm.agreeTerms: 'Accept Terms'
+registerTemplate.button: "Sign Up"
+registerTemplate.title: Sign Up
+recipeController.indexEmailNotVerified: "Your email address is not verified"
+recipeController.edit.confirmEmail: 'You need to verify your email address to edit a recipe'
+recipeController.edit.userRecipe1: 'You need'
+recipeController.edit.userRecipe2: 'to edit a recipe'
+recipeController.edit.mustLogin: 'You need to log in to edit a recipe'
+recipeController.edit.success: 'The recipe has been modified'
+recipeController.create.confirmEmail: 'You need to verify your email address to create a recipe'
+recipeController.create.mustLogin: 'You must log in to create a recipe'
+recipeController.success.createRecipe1: 'The recipe'
+recipeController.success.createRecipe2: 'has been created'
+recipeController.delete.confirmEmail: 'You need to verify your email address to delete a recipe'
+recipeController.delete.userRecipe1: 'You must be'
+recipeController.delete.userRecipe2: 'to delete this recipe'
+recipeController.delete.mustLogin: 'You must log in to delete a recipe'
+recipeController.success.deleteRecipe1: 'The recipe'
+recipeController.success.deleteRecipe2: ' has been deleted'
+accountShow.profil: 'My account'
+accountShow.Accountcreatedon: 'Date of creation'
+accountShow.EditAccount: 'Edit account'
+userForm.firstname: firstname
+userForm.lastname: lastname
+accountController.show.mustLogin: 'Log in to access your profile'
+accountController.edit.mustLogin: 'Log in to update your profile'
+Image file : 'file image'
+Delete profile image : 'Delete profile image'
+Rechercher une recette... : Find a recipe
