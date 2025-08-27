@@ -5,50 +5,108 @@ namespace App\Entity;
 use App\Repository\CommentRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    // #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    // private string $content;
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
+    private string $content;
 
-    // private bool $isApproved = false;
+    #[ORM\Column(type: 'boolean')]
+    private bool $isApproved = false;
 
-    // private User $author;
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $author;
 
-    // private Recipe $recipe;
+    #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private Recipe $recipe;
 
-    // private DateTimeImmutable $createdAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private DateTimeImmutable $createdAt;
 
-    // public function __construct()
-    // {
-    //     $this->createdAt = new DateTimeImmutable();
-    // }
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
 
-    // public function getId(): ?int
-    // {
-    //     return $this->id;
-    // }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    // public function getContent(): ?string
-    // {
-    //     return $this->content;
-    // }
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
 
-    // public function setContent(): ?string
-    // {
-    //     return $this->content;
-    // }
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
-    // public function getContent(): ?string
-    // {
-    //     return $this->content;
-    // }
+        return $this;
+    }
+
+    public function isIsApproved(): ?bool
+    {
+        return $this->isApproved;
+    }
+
+    public function setIsApproved(bool $isApproved): self
+    {
+        $this->isApproved = $isApproved;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getRecipe(): ?Recipe
+    {
+        return $this->recipe;
+    }
+
+    public function setRecipe(?Recipe $recipe): self
+    {
+        $this->recipe = $recipe;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+
+
 
 
 }

@@ -10,6 +10,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Traits\Timestampable;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -65,6 +67,13 @@ class Recipe
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'recipe', orphanRemoval: true)]
+    private Collection $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
     
     public function getId(): ?int
     {
@@ -191,6 +200,28 @@ class Recipe
             'title' => $this->title,
             'content' => $this->content,
         ];
+    }
+
+    public function getComments(): Collection{
+        return $this->comments;
+    }
+
+    public function addComments(Comment $comment): self{
+        if($this->comments->contains($comment)){
+            $this->comments[] = $comment;
+            $comment->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self{
+        if($this->comments->removeElement($comment)){
+            if($comment->getRecipe() === $this){
+                $comment->setRecipe(null);
+            }
+        }
+        return $this;
     }
 
 

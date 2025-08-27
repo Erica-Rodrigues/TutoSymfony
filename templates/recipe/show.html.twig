@@ -34,9 +34,31 @@
         <a class="btn btn-secondary btn-sm" href={{ path('app_recipe_index') }}>Go Back</a>
 
 
+
 {# <p>Recette créée par {{ user.firstname ~" "~ user.lastname }}</p> #}
 {# {{ dump(user) }} #}
 {# {{ dump(app.current_route) }} #}
+    </div>
+    <div class="mt-5">
+        <h2 class="text-2xl mb-8">Commentaire(s)</h2>
+        <div class="comments">
+            {% if app.user and app.user.isVerified %}
+                <div class="comments__new">
+                    <div class="m-full-width">
+                        {{ form_start(form) }}
+                        {{form_label(form.content, 'Nouveau commentaire', {'attr': {'class' : 'form-label inline-block mb-2 text-gray-700'}}) }}
+                        {{form_widget(form.content, {'attr': {'class': 'form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-grey-300 rounded transition ease-in-out n-0 focus:text-gray-700 focus:bg-white focus:boder-blue-600 focus:outline-none'}}) }}
+                        <button class="btn btn-primary inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md gover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center mt-5" type="submit">Poster commentaire</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            {% endif %}
+            <hr class='my-3'>
+            
+            {% for comment in recipe.comments %}
+                {{ include('layouts/partials/_comment.html.twig')}}
+            {% endfor %}
+        </div>
     </div>
 </div>
 

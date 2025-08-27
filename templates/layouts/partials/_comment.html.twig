@@ -1,0 +1,15 @@
+{% if comment.isApproved %}
+    <div class="comment d-flex flex-row justify-content-center mb-4 py-2 border border-light-subtle rounded bg-secondary-subtle">
+        <div class="flex-shrink-0">
+            <img style="max-width: 50px;" src="{{vich_uploader_asset(comment.author, 'imageFile')}}">
+        </div>
+        <div class="ms-4">
+            <p class="text-gray-500 font-light mb-6">
+                {{comment.content}}
+            </p>
+            <p class="font-semibold text-xl mb-2 text-gray-800 d-flex flex-row-reverse">
+                {{comment.author}}
+            </p>
+        </div>
+    </div>
+{% endif %}

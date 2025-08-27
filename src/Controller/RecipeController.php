@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Recipe;
+use App\Form\CommentType;
 use App\Form\RecipeType;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -118,8 +121,8 @@ final class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recette/{slug}-{id}', name: 'app_recipe_show', requirements:['id'=>'\d+', 'slug'=>'[a-z0-9-]+'])]
-    public function show(Request $request, string $slug, int $id, RecipeRepository $repo): Response
+    #[Route('/recette/{slug}-{id}', name: 'app_recipe_show', requirements:['id'=>'\d+', 'slug'=>'[a-z0-9-]+'], methods:['GET','POST'])]
+    public function show(Request $request, string $slug, int $id, RecipeRepository $repo, EntityManagerInterface $em): Response
     {
         // dd($request);
         // dd($request->attributes->getInt('id'),$request->attributes->get('slug'));
@@ -134,6 +137,23 @@ final class RecipeController extends AbstractController
         if($recipe->getSlug() !== $slug){
             return $this->redirectToRoute('app_recipe_show',['slug' => $recipe->getSlug(), 'id' => $recipe->getId()]);
         }
+        $comment = new Comment();
+        $comment->setRecipe($recipe);
+        if($this->getUser()){
+            $comment->setAuthor($this->getUser());
+        }
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            // $comment = new Comment();
+            // $comment->setContent($form->getData()['content']);
+            $em->persist($comment);
+            $em->flush();
+            $this->addFlash('success','votre commentaire a bien été enregistré. Il sera soumis à modération dans les plus brefs délais.');
+            return $this->redirectToRoute('app_recipe_show',['slug' => $recipe->getSlug(), 'id' => $recipe->getId()]);
+        }
+
         return $this->render('recipe/show.html.twig',[
             // 'slug' => $slug,
             // 'id' => $id,
@@ -141,7 +161,8 @@ final class RecipeController extends AbstractController
             //     'firstname' => 'Erica',
             //     'lastname' => 'Rodrigues'
             // ],
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'form' => $form->createView()
         ]);
 
         // version sans l'import de JsonResponse

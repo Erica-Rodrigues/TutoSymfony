@@ -33,6 +33,31 @@
             </li>
            {% endif %}
         </ul>
+        <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    {% if app.request.locale == 'en' %}
+                        <span class="flag">🇬🇧</span> English
+                    {% else %}
+                        <span class="flag">🇫🇷</span> Français
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),
+                            app.request.attributes.get('_route_params')|merge({'_locale': 'en'})) }}">
+                            <span class="flag">🇬🇧</span> English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'),
+                            app.request.attributes.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                            <span class="flag">🇫🇷</span> Français
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>      
 </nav>
